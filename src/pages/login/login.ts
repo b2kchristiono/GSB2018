@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 import {  NavController, NavParams } from 'ionic-angular';
 import { Toast } from '@ionic-native/toast';
-
+import { ApiProvider } from "../../providers/api/api";
+import { RegisterPage } from '../register/register';
+import { HomePage } from '../home/home';
+import { User } from '../../models/user';
+import { AngularFireAuth } from "angularfire2/auth";
 
 /**
  * Generated class for the LoginPage page.
@@ -17,19 +21,49 @@ import { Toast } from '@ionic-native/toast';
 })
 export class LoginPage {
 
- constructor(public navCtrl: NavController, public navParams: NavParams, private toast: Toast) {}
+  user = {} as User;
+ constructor(private afAuth: AngularFireAuth,
+   public navCtrl: NavController, public navParams: NavParams,
+   private toast: Toast, /*public api: ApiProvider*/) {}
 
+   async login(user: User) {
+    /*try {
+      const result = await this.afAuth.auth.signInAndRetrieveDataWithEmailAndPassword(user.email, user.password);
+      console.log(result);
+      if (result)
+        this.user=result.i.user.providerData[0];
+        console.log(this.user);
+        this.navCtrl.setRoot(HomePage);
 
-/*  ionViewDidLoad() {
-    this.navCtrl.push(HomePage)
+    }
+    catch (e) {
+      console.error(e);
+    }
   }
 */
-  login(): void {
+this.afAuth.auth.signInAndRetrieveDataWithEmailAndPassword(user.email, user.password).then(
+  val => {
+  console.log(val)
+  this.navCtrl.setRoot(HomePage);
+  },
+  error => {
+            console.log(error);
+            this.toast.show(`I'm a toast`, '5000', 'center').subscribe(
+  toast => {
+            console.log(toast);
+              }
+          );
+        }
+        );
+        }
 
-    this.toast.show(`I'm a toast`, '5000', 'center').subscribe(
-      toast => {
-        console.log(toast);
-      }
-    );
-  }
+
+
+
+
+
+register(){
+  this.navCtrl.push(RegisterPage);
+}
+
 }

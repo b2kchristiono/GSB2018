@@ -1,5 +1,5 @@
 <!--
-  Generated template for the LoginPage page.
+  Generated template for the RegisterPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -11,7 +11,6 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
 
     <ion-item>
       <ion-label stacked>Authentification</ion-label>
@@ -23,12 +22,8 @@
       <ion-label stacked>Mot de Passe</ion-label>
       <ion-input type="password" [(ngModel)]="user.password"></ion-input>
     </ion-item>
-
-  </ion-list>
-
-  <div class="btn-container">
-    <button class="login-btn" ion-button color="dark" round (click)="login(user)">Connexion</button>
-    <button round ion-button (click)="register()" item-left>Enregistrer</button>
+    <div padding>
+      <button round ion-button (click)="register(user)">Confirmation</button>
   </div>
 
 </ion-content>

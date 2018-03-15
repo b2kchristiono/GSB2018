@@ -1,4 +1,4 @@
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {CONFIG} from '../../config/config';
@@ -13,19 +13,17 @@ import {CONFIG} from '../../config/config';
 @Injectable()
 export class ApiProvider {
 
-  constructor(public http: Http) {
+  constructor(public http: HttpClient) {
     console.log('Hello ApiProvider Provider');
   }
 
   APIGet(table: string, input?: any): Observable<any>{
     let route: string = `${CONFIG.api_url}/${table}`;
-    let option = null;
-    return this.http.get(route, option);
+    return this.http.get(route);
   }
 
   APIPost(table: string, input?: any): Observable<any>{
     let route: string = `${CONFIG.api_url}/${table}`;
-    let option = null;
-    return this.http.post(route, input || null, option);
+    return this.http.post(route, input || null);
   }
 }
