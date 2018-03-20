@@ -48,7 +48,7 @@ this.afAuth.auth.signInAndRetrieveDataWithEmailAndPassword(user.email, user.pass
   },
   error => {
             console.log(error);
-            this.toast.show(`I'm a toast`, '5000', 'center').subscribe(
+            this.toast.show(`ERREUR`, '5000', 'bottom').subscribe(
   toast => {
             console.log(toast);
               }
